@@ -1,28 +1,17 @@
-== README
+== CSC 394 Capstone Project
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+This is the capstone project for CSC 394. This is an app that is meant to simulate an e-store.
 
-Things you may want to cover:
+Some basic information:
 
-* Ruby version
+* Ruby version: 2.1.1
 
-* System dependencies
+* Rails: 4.1.6
 
 * Configuration
 
-* Database creation
+* Database: PG
 
-* Database initialization
+* Deployment: Heroku
 
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
-
-
-Please feel free to use a different markup language if you do not plan to run
 <tt>rake doc:app</tt>.
