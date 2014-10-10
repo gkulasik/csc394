@@ -1,4 +1,10 @@
 Rails.application.routes.draw do
+  resources :order_summaries
+
+  resources :customers
+
+  resources :items
+
   get 'home/new'
 
   # The priority is based upon order of creation: first created -> highest priority.

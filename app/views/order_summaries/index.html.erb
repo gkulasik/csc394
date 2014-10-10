@@ -1,0 +1,31 @@
+<h1>Listing order_summaries</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Customer</th>
+      <th>Order date</th>
+      <th>Ship date</th>
+      <th>Total cost</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @order_summaries.each do |order_summary| %>
+      <tr>
+        <td><%= order_summary.customer_id %></td>
+        <td><%= order_summary.order_date %></td>
+        <td><%= order_summary.ship_date %></td>
+        <td><%= order_summary.total_cost %></td>
+        <td><%= link_to 'Show', order_summary %></td>
+        <td><%= link_to 'Edit', edit_order_summary_path(order_summary) %></td>
+        <td><%= link_to 'Destroy', order_summary, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Order summary', new_order_summary_path %>
