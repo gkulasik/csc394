@@ -1,3 +1,0 @@
-class OrderSummary < ActiveRecord::Base
-end
-:x
