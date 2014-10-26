@@ -1,11 +1,18 @@
 Rails.application.routes.draw do
+  
+  root "public_pages#home"
+  get 'public_pages/home'
+
+  get 'public_pages/about'
+
+  get 'public_pages/privacy_policy'
+
   resources :order_summaries
 
   resources :customers
 
   resources :items
 
-  get 'home/new'
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

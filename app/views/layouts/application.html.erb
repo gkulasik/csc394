@@ -4,7 +4,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <title><%= content_for?(:title) ? yield(:title) : "foundation-rails" %></title>
+    <title><%= content_for?(:title) ? yield(:title) : "Ascent Web Store" %></title>
 
     <%= stylesheet_link_tag    "application" %>
     <%= javascript_include_tag "vendor/modernizr" %>
@@ -12,8 +12,138 @@
   </head>
 
   <body>
+   <div class="row">
+    <div class="large-12 columns">
+ 
+     
+ 
+      <div class="row">
+        <div class="large-12 columns">
+          <%= image_tag("ascent_web_store_main.PNG") %>
+          <nav class="top-bar" data-topbar>
+            <ul class="title-area">
+               
+              <li class="name">
+                <h1>
+                  <%= link_to "Witty catchphrase here", root_path%>
+                 
+                </h1>
+              </li>
+              <li class="toggle-topbar menu-icon"><a href="#"><span>menu</span></a></li>
+            </ul>
+         
+            <section class="top-bar-section">
+               
+              <ul class="right">
+                <li class="divider"></li>
+                <li>
+                  <%= link_to "About", public_pages_about_path %>
+                 
+                </li>
+                <li class="divider"></li>
+                <li><a href="#">Gear</a></li>
+                <li class="divider"></li>
+                <li>
+                  <a href="#">Sales</a>
+                 
+                </li>
+                <li class="divider"></li>
+                <li>
+                  <a href="#">Shop</a>
+                </li>
+                <li class="divider"></li>
+                <li>
+                  <a href="#">Register</a>
+                </li>
+                <li class="divider"></li>
+                <li>
+                  <a href="#">Checkout</a>
+                </li>
+              </ul>
+            </section>
+          </nav>
+           
+        </div>
+      </div>
+ 
+     
+ 
+      <div class="row">
+ 
+   
+ 
+        <div class="large-3 small-12 columns">
+ 
+          <div class="hide-for-small panel">
+            <h3>Catagories</h3>
+            <h5 class="subheader">category info here
+              <ul>
+                <li>item 1</li>
+                <li>item 2</li>
+                <li>item 3</li>
+              </ul>
+            </h5>
+          </div>
+<!--   if signed in  -->
+          <a href="#">
+          <div class="panel callout radius">
+            <h6>cart items, links to cart (once established)</h6>
+          </div>
+          </a>
+ 
+        </div>
+ 
+     
+ 
+ 
+     
+ 
+        <div class="large-9 columns">
+         <p id="notice"><%= notice %></p>
+ 
+          <%= yield %>
+ 
+                </div>
+              </div>
+            </div>
+ 
+     
+ 
+          </div>
+        </div>
+      </div>
+ 
+ 
+     
+ 
+      <footer class="row">
+        <div class="large-12 columns"><hr/>
+          <div class="row">
+ 
+            <div class="large-6 columns">
+              <p>© Ascent, All rights reserved.</p>
+            </div>
+ 
+            <div class="large-6 columns">
+              <ul class="inline-list right">
+                <li><%= link_to "About", public_pages_about_path %></li>
+                <li><a href="#">Register</a></li>
+                <li><a href="#">Shop</a></li>
+                <li><a href="#">Profile</a></li>
+                <li><%= link_to "Privacy Policy", public_pages_privacy_policy_path %> </li>
+              </ul>
+            </div>
+ 
+          </div>
+        </div>
+      </footer>
+ 
+     
+ 
+    </div>
+  </div>
+    
 
-    <%= yield %>
     <%= javascript_include_tag "application" %>
   </body>
 </html>

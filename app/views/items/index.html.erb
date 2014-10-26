@@ -1,29 +1,10 @@
-<h1>Listing items</h1>
 
-<table>
-  <thead>
-    <tr>
-      <th>Description</th>
-      <th>Keywords</th>
-      <th>Unit price</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
+<!-- if admin  -->
 
-  <tbody>
-    <% @items.each do |item| %>
-      <tr>
-        <td><%= item.description %></td>
-        <td><%= item.keywords %></td>
-        <td><%= item.unit_price %></td>
-        <td><%= link_to 'Show', item %></td>
-        <td><%= link_to 'Edit', edit_item_path(item) %></td>
-        <td><%= link_to 'Destroy', item, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+<%= render "admin_index" %>
 
-<br>
+<!-- else  -->
 
-<%= link_to 'New Item', new_item_path %>
+<%= render "customer_index" %>
+
+<!-- end -->
