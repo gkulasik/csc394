@@ -32,35 +32,14 @@
               <li class="toggle-topbar menu-icon"><a href="#"><span>menu</span></a></li>
             </ul>
          
-            <section class="top-bar-section">
-               
-              <ul class="right">
-                <li class="divider"></li>
-                <li>
-                  <%= link_to "About", public_pages_about_path %>
-                 
-                </li>
-                <li class="divider"></li>
-                <li><a href="#">Gear</a></li>
-                <li class="divider"></li>
-                <li>
-                  <a href="#">Sales</a>
-                 
-                </li>
-                <li class="divider"></li>
-                <li>
-                  <a href="#">Shop</a>
-                </li>
-                <li class="divider"></li>
-                <li>
-                  <a href="#">Register</a>
-                </li>
-                <li class="divider"></li>
-                <li>
-                  <a href="#">Checkout</a>
-                </li>
-              </ul>
-            </section>
+            <% #if !logged_in_admin? %>
+            <%= render 'layouts/public_menu' %>
+            
+                
+                <%#else%>
+                <%#end%>
+            
+            
           </nav>
            
         </div>
@@ -99,7 +78,12 @@
      
  
         <div class="large-9 columns">
-         <p id="notice"><%= notice %></p>
+          <br />
+         <% flash.each do |message_type, message| %>
+        <div data-alert class="alert-box <%= message_type %>"><%= message %>
+          <a href="#" class="close">&times;</a>
+          </div>
+      <% end %>
  
           <%= yield %>
  

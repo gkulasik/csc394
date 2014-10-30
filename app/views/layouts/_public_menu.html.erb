@@ -1,0 +1,44 @@
+<section class="top-bar-section">
+               
+              <ul class="right">
+                <li class="divider"></li>
+                <li>
+                  <%= link_to "About", public_pages_about_path %>
+                 
+                </li>
+                <li class="divider"></li>
+                <li><a href="#">Gear</a></li>
+                <li class="divider"></li>
+                <li>
+                  <a href="#">Sales</a>
+                 
+                </li>
+                <li class="divider"></li>
+                <li>
+                  <a href="#">Shop</a>
+                </li>
+                <li class="divider"></li>
+                <% if !logged_in? %>
+                <li class="has-dropdown">
+                  <a href="#">Register</a>
+                  <ul class="dropdown">
+                    <li><%= link_to "Log in", login_path %></li>
+                  </ul>
+                </li>
+                <%else%>
+                 <li class="has-dropdown">
+                  <a href="#">Account</a>
+                  <ul class="dropdown">
+                    <li><%=link_to "Profile", edit_customer_path(current_customer) %></li>
+                    <li><%= link_to "Orders", root_path %></li>
+                    <li><%= link_to "Log out", logout_path, method: "delete" %> </li>
+                  </ul>
+                </li>
+                
+                <li class="divider"></li>
+                <li>
+                  <a href="#">Checkout</a>
+                </li>
+                <%end%>
+              </ul>
+            </section>
