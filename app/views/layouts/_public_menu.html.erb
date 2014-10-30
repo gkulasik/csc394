@@ -20,7 +20,7 @@
                 <li class="divider"></li>
                 <% if !logged_in? %>
                 <li class="has-dropdown">
-                  <a href="#">Register</a>
+                  <%= link_to "Register", new_customer_path %>
                   <ul class="dropdown">
                     <li><%= link_to "Log in", login_path %></li>
                   </ul>

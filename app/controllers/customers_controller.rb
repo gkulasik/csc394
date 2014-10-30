@@ -29,7 +29,9 @@ class CustomersController < ApplicationController
     respond_to do |format|
       if @customer.save
         log_in @customer
-        format.html { redirect_to @customer, flash[:success] = 'Customer was successfully created.' }
+        flash[:success] = 'Customer was successfully created.'
+        
+        format.html { redirect_to @customer }
         format.json { render :show, status: :created, location: @customer }
       else
         format.html { render :new }
