@@ -1,6 +1,6 @@
 class Cart < ActiveRecord::Base
-belongs_to: customer
-has_many:item
-validates: customer_id, :item_id, presence: true
-add_index: item_id
+belongs_to :customer
+  has_one :item
+validates :customer_id, :item_id, presence: true
+
 end
