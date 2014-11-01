@@ -7,7 +7,7 @@ class Item < ActiveRecord::Base
   has_many :images, as: :picture, dependent: :destroy
   before_create :create_item_inventory
   accepts_nested_attributes_for :images
-  
+  has_many :carts
   def create_item_inventory
     self.build_inventory.update_attributes(inventory_amount: 0)
   end
