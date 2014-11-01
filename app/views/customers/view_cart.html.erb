@@ -1,0 +1,21 @@
+<h4>Shopping Cart</h4>
+
+<table>
+  <thead>
+    <tr>
+      <th>Item</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% current_customer.carts.each do |cart| %>
+    <% item = Item.find(cart.item_id) %></td>
+      <tr>
+        <td><%= item.title %></td>
+        <td><%= %></td>
+        </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<%= link_to "Check out", root_path, class: "button small" %>

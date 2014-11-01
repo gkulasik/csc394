@@ -6,6 +6,7 @@ Rails.application.routes.draw do
   
   delete "logout" => "sessions#destroy"
   
+  get "customers/view_cart"
   
   root "public_pages#home"
   get 'public_pages/home'
