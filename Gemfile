@@ -45,6 +45,7 @@ gem 'kaminari'
 gem 'simple_form'
 gem 'i18n_country_select'
 gem 'i18n-country-translations'
+gem 'figaro'
 
 group :development do
   gem 'quiet_assets', '~> 1.0.0'

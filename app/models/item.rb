@@ -4,6 +4,7 @@ class Item < ActiveRecord::Base
   validates :title,:description, :keywords, :unit_price,presence: true
   
   has_one :inventory
+  has_many :images, as: :picture
   before_create :create_item_inventory
   
   
