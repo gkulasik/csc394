@@ -6,8 +6,9 @@ Rails.application.routes.draw do
   
   delete "logout" => "sessions#destroy"
   
-  get "customers/view_cart"
-  
+  get "cart" => "customers#view_cart"
+  get "carts/update_cart"
+  get "items/delete_image"
   root "public_pages#home"
   get 'public_pages/home'
 
@@ -16,7 +17,7 @@ Rails.application.routes.draw do
   get 'public_pages/privacy_policy'
 
   resources :order_summaries
-
+  resources :carts,       only: [:create, :destroy]
   resources :customers
 
   resources :items

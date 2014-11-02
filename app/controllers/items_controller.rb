@@ -11,16 +11,20 @@ class ItemsController < ApplicationController
   # GET /items/1.json
   def show
     @images = @item.images
+    @inventory = @item.inventory.inventory_amount
+    @cart = @item.carts.build
   end
 
   # GET /items/new
   def new
     @item = Item.new
    @image =  @item.images.build
+    @inventory = @item.build_inventory
   end
 
   # GET /items/1/edit
   def edit
+    
   end
 
   # POST /items
@@ -28,8 +32,9 @@ class ItemsController < ApplicationController
   def create
     @item = Item.new(item_params)
     #@image = @item.images.build(item_params[:image_attributes])
+    @inventory = @item.build_inventory(item_params[:inventory_attributes])
     respond_to do |format|
-      if @item.save
+      if @item.save && @inventory.save
        if params[:images]
 
           params[:images].each { |image|
@@ -49,7 +54,7 @@ class ItemsController < ApplicationController
   # PATCH/PUT /items/1.json
   def update
     respond_to do |format|
-      if @item.update(item_params)
+      if @item.update(item_params) && @item.inventory.update_attributes(inventory_amount: item_params[:inventory_attributes][:inventory_amount])
         if params[:images]
 
           params[:images].each { |image|
@@ -74,15 +79,28 @@ class ItemsController < ApplicationController
       format.json { head :no_content }
     end
   end
-
+  def delete_image
+    if params.has_key? "image_id"
+      
+      image = Image.find_by(id: params[:image_id].to_i)
+      item = image.picture
+      image.delete
+      flash[:success] = "Image deleted"
+      redirect_to edit_item_path(item)
+      
+    else
+      flash[:alert] = "Something went wrong with image deletion. Please try again."
+      redirect_to :back
+    end
+  end
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_item
       @item = Item.find(params[:id])
     end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
+    # Never trust parameters from the scary internet, only allow the white list through. [:id, :name, :_destroy]
     def item_params
-      params.require(:item).permit(:description, :keywords, :unit_price, :title, :picture)
+      params.require(:item).permit(:description, :keywords, :unit_price, :title, :picture, inventory_attributes: [:id, :inventory_amount, :_destroy])
     end
 end

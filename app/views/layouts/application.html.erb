@@ -64,13 +64,15 @@
               </ul>
             </h5>
           </div>
-<!--   if signed in  -->
-          <a href="#">
+       <% if logged_in? %> <!--       and is not admin -->
+            
+            <%= link_to(cart_url) do %>
+        
           <div class="panel callout radius">
-            <h6>cart items, links to cart (once established)</h6>
+            <h6><%= current_customer.carts.sum(:quantity) %> items in your cart</h6>
           </div>
-          </a>
- 
+            <%end%>
+            <%end%>
         </div>
  
      

@@ -20,7 +20,6 @@ module SessionsHelper
   def logged_in?
 #     checks if a customer is logged in, use: logged_in? this will only validate if a customer is logged in but will not tell you if they are an admin or regular customer
 #     The method returns true is logged in, false if not logged in 
-    
     !current_customer.nil?
   end
   
