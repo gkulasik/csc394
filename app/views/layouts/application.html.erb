@@ -114,9 +114,14 @@
             <div class="large-6 columns">
               <ul class="inline-list right">
                 <li><%= link_to "About", public_pages_about_path %></li>
-                <li><a href="#">Register</a></li>
-                <li><a href="#">Shop</a></li>
-                <li><a href="#">Profile</a></li>
+                <% if !logged_in? %>
+                <li><%= link_to "Register", new_customer_path %></li>
+                <%end%>
+                
+                <li> <%= link_to "Shop", items_url %></li>
+                <% if logged_in? %>
+                <li><%= link_to "Profile", edit_customer_path(current_customer) %></li>
+                <%end%>
                 <li><%= link_to "Privacy Policy", public_pages_privacy_policy_path %> </li>
               </ul>
             </div>

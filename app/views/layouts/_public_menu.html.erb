@@ -7,15 +7,14 @@
                  
                 </li>
                 <li class="divider"></li>
-                <li><a href="#">Gear</a></li>
-                <li class="divider"></li>
+                
                 <li>
                   <a href="#">Sales</a>
                  
                 </li>
                 <li class="divider"></li>
                 <li>
-                  <a href="#">Shop</a>
+                  <%= link_to "Shop", items_url %>
                 </li>
                 <li class="divider"></li>
                 <% if !logged_in? %>
