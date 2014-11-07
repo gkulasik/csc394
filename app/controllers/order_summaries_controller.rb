@@ -1,6 +1,7 @@
 class OrderSummariesController < ApplicationController
   before_action :set_order_summary, only: [:show, :edit, :update, :destroy]
-
+  skip_before_action :is_admin
+  
   # GET /order_summaries
   # GET /order_summaries.json
   def index
@@ -10,6 +11,7 @@ class OrderSummariesController < ApplicationController
   # GET /order_summaries/1
   # GET /order_summaries/1.json
   def show
+    @checkout = @order_summary.checkout
   end
 
   # GET /order_summaries/new

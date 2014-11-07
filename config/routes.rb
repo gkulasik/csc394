@@ -1,12 +1,19 @@
 Rails.application.routes.draw do
   
- 
+  get 'customers/order_confirmation'
+  get 'admin/home'
+  get 'customers/view_orders'
+  resources :checkouts
+
+  resources :item_reviews
+
   get "login" => "sessions#new"
   post "login" => "sessions#create"
   
   delete "logout" => "sessions#destroy"
   
   get "cart" => "customers#view_cart"
+  patch 'cart' => "carts#update_cart"
   get "carts/update_cart"
   get "items/delete_image"
   root "public_pages#home"

@@ -1,6 +1,6 @@
 class CustomersController < ApplicationController
   before_action :set_customer, only: [:show, :edit, :update, :destroy]
-
+  skip_before_action :is_admin
   # GET /customers
   # GET /customers.json
   def index
@@ -65,9 +65,67 @@ class CustomersController < ApplicationController
   end
   
   def view_cart
+    @carts = current_customer.carts.order("id ASC")
     
   end
-
+  def view_orders
+    @orders = current_customer.order_summaries
+  end
+  def order_confirmation
+   
+    if create_order
+    flash.now[:success] = "Order processed Successfully!"
+      @order_summary = @order
+    else
+      if current_customer.has_open_checkout?
+        redirect_to customers_view_orders_path
+      
+      else
+        
+      flash.now[:alert] = "Error while processing order."
+      redirect_to cart_url
+      end
+    end
+    
+    
+    end
+  
+  def create_order
+   
+    if params.has_key?("verified") && params.has_key?("customer_id") && params.has_key?("checkout_id") && current_customer.has_open_checkout?
+      
+      if params[:customer_id].to_i == current_customer.id
+        @everything_ok = true
+        @order = OrderSummary.create(customer_id: current_customer.id, order_date: Date.today, total_cost: -1)
+        if @order.nil?
+          @everything_ok = false
+          return "Error creating order. Please try again in a moment."
+        end
+        @cart = current_customer.carts
+        total_cost = 0
+        @cart.each do |c|
+          @order.order_details.build(item_price: c.item.unit_price, item_id: c.item.id, quantity: c.quantity)
+          total_cost += c.item.unit_price*c.quantity
+#           raise 'e'
+          c.destroy
+        end
+       
+        @checkout = current_customer.checkouts.find(params[:checkout_id].to_i)
+        @checkout.update_attributes(verified: params[:verified]) ? @everything_ok : @everything_ok = false
+       
+        @order.update_attributes(total_cost: total_cost)  ? @everything_ok : @everything_ok = false
+        @checkout.update_attributes(order_summary_id: @order.id)  ? @everything_ok : @everything_ok = false
+        if @everything_ok
+          true
+        else
+          false
+        end
+#         raise "e"
+      end
+  end
+end
+  end
+  
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_customer
@@ -78,4 +136,5 @@ class CustomersController < ApplicationController
     def customer_params
       params.require(:customer).permit(:name, :address, :city, :state_province, :postal_code, :country, :phone_number, :email, :password, :password_confirmation)
     end
-end
+  
+  

@@ -6,5 +6,11 @@ class Customer < ActiveRecord::Base
   validates :password, length: {minimum: 6}, allow_blank: true
   has_secure_password
   validates :name, :address, :city, :state_province, :postal_code, :country, :phone_number, presence: true
-  has_many :carts
+  has_many :carts, dependent: :destroy
+  has_many :checkouts, dependent: :destroy
+  has_many :order_summaries, dependent: :destroy
+  
+  def has_open_checkout?
+    !self.checkouts.find_by(verified: nil).nil?
+  end
 end

@@ -1,0 +1,47 @@
+<h1>Listing checkouts</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Card number</th>
+      <th>Csv</th>
+      <th>Name on card</th>
+      <th>Expiration date</th>
+      <th>Shipping address</th>
+      <th>Shipping city</th>
+      <th>Shipping state or province</th>
+      <th>Shipping postal code</th>
+      <th>Using account address</th>
+      <th>Verified</th>
+      <th>Customer</th>
+      <th>Order summary</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @checkouts.each do |checkout| %>
+      <tr>
+        <td><%= checkout.card_number %></td>
+        <td><%= checkout.csv %></td>
+        <td><%= checkout.name_on_card %></td>
+        <td><%= checkout.expiration_date %></td>
+        <td><%= checkout.shipping_address %></td>
+        <td><%= checkout.shipping_city %></td>
+        <td><%= checkout.shipping_state_or_province %></td>
+        <td><%= checkout.shipping_postal_code %></td>
+        <td><%= checkout.using_account_address %></td>
+        <td><%= checkout.verified %></td>
+        <td><%= checkout.customer %></td>
+        <td><%= checkout.order_summary %></td>
+        <td><%= link_to 'Show', checkout %></td>
+        <td><%= link_to 'Edit', edit_checkout_path(checkout) %></td>
+        <td><%= link_to 'Destroy', checkout, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Checkout', new_checkout_path %>

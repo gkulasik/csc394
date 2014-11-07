@@ -1,0 +1,17 @@
+<h1>Your Orders</h1>
+<table>
+  <tr>
+  <th>Date</th>
+  <th>Total Cost</th>
+  <th></th>
+  </tr>
+<% @orders.each do |o|%>
+<tr>
+  <td><%= o.order_date.strftime("%B %d, %Y") %></td>
+  <td><%= o.total_cost %></td>
+  <td><%= link_to "View", o %></td>
+</tr>
+
+
+<%end%>
+</table>

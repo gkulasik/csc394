@@ -1,0 +1,48 @@
+<h3>Credit Card and Shipping Information</h3>
+<p>
+  <strong>Card number:</strong>
+  <%= @checkout.card_number %>
+</p>
+
+<p>
+  <strong>Csv:</strong>
+  <%= @checkout.csv %>
+</p>
+
+<p>
+  <strong>Name on card:</strong>
+  <%= @checkout.name_on_card %>
+</p>
+
+<p>
+  <strong>Expiration date:</strong>
+  <%= @checkout.expiration_date %>
+</p>
+
+<p>
+  <strong>Shipping address:</strong>
+  <%= @checkout.shipping_address %>
+</p>
+
+<p>
+  <strong>Shipping city:</strong>
+  <%= @checkout.shipping_city %>
+</p>
+
+<p>
+  <strong>Shipping state or province:</strong>
+  <%= @checkout.shipping_state_or_province %>
+</p>
+
+<p>
+  <strong>Shipping postal code:</strong>
+  <%= @checkout.shipping_postal_code %>
+</p>
+<p>
+  <strong>Shipping Country:</strong>
+  <%= I18n.t(@checkout.shipping_country, :scope => :countries) %>
+</p>
+<br />
+
+
+

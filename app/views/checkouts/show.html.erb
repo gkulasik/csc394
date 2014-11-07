@@ -1,0 +1,58 @@
+<h2>Checkout Confirmation</h2>
+
+<h3>Cart Summary</h3>
+<table>
+  <col width="20%"> 
+  <col width="10%">
+  <col width="15%">
+  <col width="20%">
+
+  <thead>
+    <tr>
+      <th>Item</th>
+      <th>Quantity</th>
+      <th>Unit Price</th>
+      <th>Total Price</th>
+    </tr>
+  </thead>
+<%  total_cost = 0 %>
+  <tbody>
+    <% @carts.each do |cart| %>
+    <% item_cost = cart.item.unit_price*cart.quantity %>
+    <% total_cost += item_cost %>
+      <tr>
+        <td><%= cart.item.title %></td>
+        <td>
+         <%= cart.quantity %>
+          
+        </td>
+        <td><%= number_to_currency(cart.item.unit_price)%></td>
+        <td><%= number_to_currency(item_cost) %></td>
+       
+        </tr>
+    <%end%>
+    
+    
+  </tbody>
+</table>
+
+<div class="row">
+  <div class="small-offset-8 small-4 columns">
+    <h5> Total Cost: <%= number_to_currency(total_cost)%> </h5>
+  </div>
+  
+</div>
+
+<%= render 'show_checkout' %>
+
+<div class="row">
+  <div class="small-4 columns">
+    <%= link_to 'Edit Order', edit_checkout_path(@checkout), class: "button small" %>
+  </div>
+    <div class="small-4 columns">
+    
+  </div>
+    <div class="small-4 columns">
+    <%= link_to "Confirm Order", customers_order_confirmation_path(verified: true, customer_id: current_customer.id, checkout_id: @checkout.id), class: "button small" %>
+  </div>
+</div>

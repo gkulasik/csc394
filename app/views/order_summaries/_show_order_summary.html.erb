@@ -1,0 +1,32 @@
+<p>
+  <strong>Order date:</strong>
+  <%= @order_summary.order_date.strftime("%B %d, %Y") %>
+</p>
+
+<p>
+  <strong>Ship date:</strong>
+  <%= @order_summary.ship_date ? @order_summary.ship_date : "Not yet shipped" %>
+</p>
+
+<p>
+  <strong>Total cost:</strong>
+  <%= number_to_currency(@order_summary.total_cost) %>
+</p>
+ 
+<h4>Order Details</h4>
+<table>
+  <tr>
+  <th>Item</th>
+    <th>Quantity</th>
+  <th>Unit Price</th>
+  <th>Total Cost</th>
+  </tr>
+<% @order_summary.order_details.each do |o| %>
+<tr>
+  <td><%= o.item.title %></td>
+<td><%= o.quantity%></td>
+  <td><%= number_to_currency(o.item_price) %></td>
+  <td><%= number_to_currency(o.quantity * o.item_price) %></td>
+  </tr>
+<%end%>
+</table>

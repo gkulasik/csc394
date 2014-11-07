@@ -1,24 +1,3 @@
-<p id="notice"><%= notice %></p>
-
-<p>
-  <strong>Customer:</strong>
-  <%= @order_summary.customer_id %>
-</p>
-
-<p>
-  <strong>Order date:</strong>
-  <%= @order_summary.order_date %>
-</p>
-
-<p>
-  <strong>Ship date:</strong>
-  <%= @order_summary.ship_date %>
-</p>
-
-<p>
-  <strong>Total cost:</strong>
-  <%= @order_summary.total_cost %>
-</p>
-
-<%= link_to 'Edit', edit_order_summary_path(@order_summary) %> |
-<%= link_to 'Back', order_summaries_path %>
+<h2>Order Summary - <%=@order_summary.order_date.strftime("%B %d, %Y")%></h2>
+<%= render 'show_order_summary' %>
+<%= render 'checkouts/show_checkout' %>

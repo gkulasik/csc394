@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141102011258) do
+ActiveRecord::Schema.define(version: 20141107025130) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -25,6 +25,27 @@ ActiveRecord::Schema.define(version: 20141102011258) do
   end
 
   add_index "carts", ["customer_id", "item_id"], name: "index_carts_on_customer_id_and_item_id", using: :btree
+
+  create_table "checkouts", force: true do |t|
+    t.string   "card_number"
+    t.string   "csv"
+    t.string   "name_on_card"
+    t.date     "expiration_date"
+    t.string   "shipping_address"
+    t.string   "shipping_city"
+    t.string   "shipping_state_or_province"
+    t.string   "shipping_postal_code"
+    t.boolean  "using_account_address"
+    t.boolean  "verified"
+    t.integer  "customer_id"
+    t.integer  "order_summary_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "shipping_country"
+  end
+
+  add_index "checkouts", ["customer_id"], name: "index_checkouts_on_customer_id", using: :btree
+  add_index "checkouts", ["order_summary_id"], name: "index_checkouts_on_order_summary_id", using: :btree
 
   create_table "customers", force: true do |t|
     t.string   "name"
@@ -63,6 +84,14 @@ ActiveRecord::Schema.define(version: 20141102011258) do
     t.datetime "updated_at"
   end
 
+  create_table "item_reviews", force: true do |t|
+    t.integer  "Item_ID"
+    t.integer  "Rating"
+    t.text     "Comments"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "items", force: true do |t|
     t.text     "description"
     t.string   "keywords"
@@ -73,12 +102,12 @@ ActiveRecord::Schema.define(version: 20141102011258) do
   end
 
   create_table "order_details", force: true do |t|
-    t.integer  "orderSummary_id"
     t.integer  "item_id"
     t.integer  "quantity"
     t.decimal  "item_price"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "order_summary_id"
   end
 
   create_table "order_summaries", force: true do |t|

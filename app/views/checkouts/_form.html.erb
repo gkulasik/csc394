@@ -1,0 +1,68 @@
+<%= form_for(@checkout) do |f| %>
+  <% if @checkout.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@checkout.errors.count, "error") %> prohibited this checkout from being saved:</h2>
+
+      <ul>
+      <% @checkout.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :card_number %><br>
+    <%= f.text_field :card_number %>
+  </div>
+  <div class="field">
+    <%= f.label :csv %><br>
+    <%= f.text_field :csv %>
+  </div>
+  <div class="field">
+    <%= f.label :name_on_card %><br>
+    <%= f.text_field :name_on_card %>
+  </div>
+  <div class="field">
+    <%= f.label :expiration_date %><br>
+    <span class="datetime">
+    <%= f.date_select :expiration_date, start_year: DateTime.now.year, end_year: DateTime.now.year + 10, order: [:month, :day, :year], include_blank: true%></span>
+  </div>
+ <div class="field">
+    <%= f.label :using_account_address, "Use Account Address?" %><br>
+    <%= f.check_box :using_account_address %>
+  </div>
+  <div class="field">
+    <%= f.label :shipping_address %><br>
+    <%= f.text_field :shipping_address %>
+  </div>
+ 
+  <div class="field">
+    <%= f.label :shipping_city %><br>
+    <%= f.text_field :shipping_city %>
+  </div>
+  <div class="field">
+    <%= f.label :shipping_state_or_province %><br>
+    <%= f.text_field :shipping_state_or_province %>
+  </div>
+  <div class="field">
+    <%= f.label :shipping_postal_code %><br>
+    <%= f.text_field :shipping_postal_code %>
+  </div>
+ <div class="field">
+    <%= f.label :shipping_country %><br>
+   <%= f.country_code_select :shipping_country, ["", ""]  %>
+  </div>
+
+
+ 
+<%= f.hidden_field :customer_id, :value => current_customer.id %>
+ 
+ 
+
+<%= f.hidden_field :order_summary_id, :value => -1 %>
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
