@@ -1,7 +1,13 @@
 class SessionsController < ApplicationController
   skip_before_action :is_logged_in, :is_admin
+  
   def new
+#     if current_customer
+#       flash[:notice] = "You are already logged in."
+#       redirect_to root_url
+#     end
   end
+  
   def create
 #     This method create a user session by authenitcating against the email and password
     user = Customer.find_by(email: params[:session][:email].downcase)

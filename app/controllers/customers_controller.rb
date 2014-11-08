@@ -1,6 +1,7 @@
 class CustomersController < ApplicationController
   before_action :set_customer, only: [:show, :edit, :update, :destroy]
-  skip_before_action :is_admin
+  skip_before_action :is_admin, except: :index
+  skip_before_action :is_logged_in, only: [:new, :show, :create]
   # GET /customers
   # GET /customers.json
   def index
@@ -29,9 +30,10 @@ class CustomersController < ApplicationController
     respond_to do |format|
       if @customer.save
         log_in @customer
-        flash[:success] = 'Customer was successfully created.'
+        CustomerMailer.sign_up_email(@customer).deliver
+        flash[:success] = 'Your account was successfully created!'
         
-        format.html { redirect_to @customer }
+        format.html { redirect_to edit_customer_path(@customer) }
         format.json { render :show, status: :created, location: @customer }
       else
         format.html { render :new }
@@ -76,6 +78,7 @@ class CustomersController < ApplicationController
     if create_order
     flash.now[:success] = "Order processed Successfully!"
       @order_summary = @order
+      CustomerMailer.order_complete_email(@order_summary, current_customer, @order_summary.checkout).deliver
     else
       if current_customer.has_open_checkout?
         redirect_to customers_view_orders_path

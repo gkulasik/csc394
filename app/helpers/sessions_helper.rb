@@ -23,9 +23,9 @@ module SessionsHelper
     !current_customer.nil?
   end
   
-#   def logged_in_admin?
-  #     return !@current_customer.nil? && @current_customer.admin?
-#   end
+  def logged_in_admin?
+      return !current_customer.nil? && current_customer.admin?
+  end
   
   def log_out
 #     logs a customer out by deleteing the cusotmers id within the session

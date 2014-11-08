@@ -4,6 +4,23 @@ class Checkout < ActiveRecord::Base
   validates :card_number, :csv, :name_on_card, :expiration_date, :shipping_address, :shipping_city, :shipping_state_or_province, :shipping_postal_code, :shipping_country, :customer_id,  presence: true
   before_validation :check_address
   
+  before_validation :edit_card_info
+  
+  
+  def edit_card_info
+    length = self.card_number.length
+    card = self.card_number[-4,4]
+    (length-4).times do
+      card = card.insert(0,"x")
+    end
+    self.card_number = card
+    csv = ""
+    self.csv.length.times do
+      csv = csv.insert(0,"x")
+    end
+    self.csv = csv
+  end
+  
   
   def check_address
     if self.using_account_address

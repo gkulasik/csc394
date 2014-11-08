@@ -1,7 +1,12 @@
 <p>
+  <strong>Order Number:</strong>
+  <%= "#{@order_summary.order_date.to_time.to_i}-#{@order_summary.id}" %>
+</p>
+<p>
   <strong>Order date:</strong>
   <%= @order_summary.order_date.strftime("%B %d, %Y") %>
 </p>
+
 
 <p>
   <strong>Ship date:</strong>

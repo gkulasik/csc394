@@ -1,0 +1,8 @@
+
+<p>Hi <%= @customer.name %>! </p>
+
+<p>Thanks for your order! Below is a summary for your records:</p>
+
+<h4>Order Summary - <%=@order_summary.order_date.strftime("%B %d, %Y")%></h4>
+<%= render 'order_summaries/show_order_summary' %>
+<%= render 'checkouts/show_checkout' %>

@@ -1,6 +1,6 @@
 class CheckoutsController < ApplicationController
   before_action :set_checkout, only: [:show, :edit, :update, :destroy]
-  skip_before_action :is_admin
+  skip_before_action :is_admin, except: :index
   # GET /checkouts
   # GET /checkouts.json
   def index

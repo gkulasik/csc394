@@ -20,27 +20,25 @@
  
       <div class="row">
         <div class="large-12 columns">
-          <%= image_tag("ascent_web_store_main.PNG") %>
+          <%= link_to image_tag("ascent_web_store_main.PNG"), root_url %>
           <nav class="top-bar" data-topbar>
             <ul class="title-area">
                
               <li class="name">
-                <h1>
-                  <%= link_to "Witty catchphrase here", root_path%>
-                 
-                </h1>
+               
               </li>
               <li class="toggle-topbar menu-icon"><a href="#"><span>menu</span></a></li>
             </ul>
          
-            <% #if !logged_in_admin? %>
+            
             <%= render 'layouts/public_menu' %>
             
-                
-                <%#else%>
-                <%#end%>
+            <% if logged_in_admin? %>
+            <%= render 'layouts/admin_menu' %>
+                <%end%>
             
-            
+             </ul>
+            </section>
           </nav>
            
         </div>

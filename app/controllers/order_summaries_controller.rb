@@ -30,7 +30,9 @@ class OrderSummariesController < ApplicationController
 
     respond_to do |format|
       if @order_summary.save
-        format.html { redirect_to @order_summary, notice: 'Order summary was successfully created.' }
+        
+        flash[:success] = 'Order was successfully processed!'
+        format.html { redirect_to @order_summary }
         format.json { render :show, status: :created, location: @order_summary }
       else
         format.html { render :new }

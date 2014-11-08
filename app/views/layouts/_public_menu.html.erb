@@ -1,6 +1,24 @@
 <section class="top-bar-section">
                
               <ul class="right">
+                
+                <li class="has-form">
+  <div class="row collapse">
+    <div class="large-8 small-9 columns">
+      
+      
+      <%= form_tag items_path, :method => 'get' do %>
+
+      <%= text_field_tag :search, params[:search], :placeholder => "Search..." %>
+     
+    </div>
+    <div class="large-4 small-3 columns">
+       <%= submit_tag 'Search', :name => nil , class: "button expand" %>
+
+<% end %>
+    </div>
+  </div>
+</li>
                 <li class="divider"></li>
                 <li>
                   <%= link_to "About", public_pages_about_path %>
@@ -36,5 +54,4 @@
                 </li>
 
                 <%end%>
-              </ul>
-            </section>
+             

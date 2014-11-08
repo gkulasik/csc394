@@ -1,13 +1,13 @@
 class ItemsController < ApplicationController
   before_action :set_item, only: [:show, :edit, :update, :destroy]
-  skip_before_action :is_admin
-  skip_before_action :is_logged_in, only: [:show]
+  skip_before_action :is_admin, except: [:edit, :create, :destroy, :new]
+  skip_before_action :is_logged_in, only: [:show, :index]
   
 
   # GET /items
   # GET /items.json
   def index
-    @items = Item.all
+    @items = Item.search(params[:search])
   end
 
   # GET /items/1

@@ -1,10 +1,10 @@
 
-<!-- if admin  -->
+<% if logged_in_admin? %>
 
 <%= render "admin_index" %>
 
-<!-- else  -->
+<%else %>
 
 <%= render "customer_index" %>
 
-<!-- end -->
+<%end%>
