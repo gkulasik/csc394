@@ -71,6 +71,10 @@
   </div>
 </div>
   <div class="actions">
-    <%= f.submit class: "button small" %>
+    <% if f.object.new_record? %>
+    <%= f.submit "Create Account", class: "button small" %>
+    <%else%>
+    <%= f.submit "Update Account", class: "button small" %>
+    <%end%>
   </div>
 <% end %>
