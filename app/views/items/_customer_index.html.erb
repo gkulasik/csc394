@@ -3,7 +3,7 @@
   <% @items.each do |item| %>
             <div class="large-4 small-6 columns" style="float:left;">
               <% if !item.images.first.nil? %>
-              <%= link_to image_tag(item.images.first.img.url(:medium), alt: item.title), item %>
+              <%= link_to image_tag(item.images.first.img.url(:thumb), alt: item.title), item %>
               <%else%>
               <%= link_to image_tag("http://placehold.it/300x300&text=Thumbnail", alt: item.title), item %>
               <%end%>
