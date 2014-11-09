@@ -53,12 +53,12 @@
         <div class="large-3 small-12 columns">
  
           <div class="hide-for-small panel">
-            <h3>Catagories</h3>
-            <h5 class="subheader">category info here
+            <h3>Quick Search</h3>
+            <h5 class="subheader"
               <ul>
-                <li>item 1</li>
-                <li>item 2</li>
-                <li>item 3</li>
+                <li><%= link_to "Newest Items", items_path(:filter => "newest") %></li>
+                <li><%= link_to "Best Sellers", items_path(:filter => "best_seller") %></li>
+                <li><%= link_to "Great Deals", items_path(:filter => "deals") %></li>
               </ul>
             </h5>
           </div>
@@ -113,7 +113,7 @@
               <ul class="inline-list right">
                 <li><%= link_to "About", public_pages_about_path %></li>
                 <% if !logged_in? %>
-                <li><%= link_to "Register", new_customer_path %></li>
+                <li><%= link_to "Register", sign_up_path %></li>
                 <%end%>
                 
                 <li> <%= link_to "Shop", items_url %></li>

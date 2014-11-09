@@ -1,10 +1,10 @@
 class CustomerMailer < ActionMailer::Base
-  default from: "gkulasik.developer@gmail.com", to: "gkulasik@gmail.com"
-  #replace all gkulasik@gmail.com with @customer.email
+  default from: "gkulasik.developer@gmail.com" #, to: "gkulasik@gmail.com"
+  
   
   def sign_up_email(customer)
     @customer = customer
-    mail(to: "gkulasik@gmail.com", subject: "Weclome to Ascent!")
+    mail(to: @customer.email, subject: "Weclome to Ascent!")
   end
   
   def order_complete_email(order, customer, checkout)
@@ -13,6 +13,6 @@ class CustomerMailer < ActionMailer::Base
     @checkout = checkout
     
     
-    mail(to: "gkulasik@gmail.com", subject: "Ascent Order Summary - #{Date.today}")
+    mail(to: @customer.email, subject: "Ascent Order Summary - #{Date.today}")
   end
 end

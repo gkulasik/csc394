@@ -24,12 +24,16 @@
                   <%= link_to "About", public_pages_about_path %>
                  
                 </li>
+<!--                 
+
+        no need for sales right now
+
                 <li class="divider"></li>
                 
                 <li>
                   <a href="#">Sales</a>
                  
-                </li>
+                </li> -->
                 <li class="divider"></li>
                 <li>
                   <%= link_to "Shop", items_url %>
@@ -37,7 +41,7 @@
                 <li class="divider"></li>
                 <% if !logged_in? %>
                 <li class="has-dropdown">
-                  <%= link_to "Register", new_customer_path %>
+                  <%= link_to "Register", sign_up_path %>
                   <ul class="dropdown">
                     <li><%= link_to "Log in", login_path %></li>
                   </ul>

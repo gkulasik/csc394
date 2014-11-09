@@ -4,8 +4,8 @@
         <div class="row">
         <div class="large-6 columns">
           <% if !@images.empty? %>
-          <%= image_tag(@images.first.img.url)%>
-          <br /> More Images...
+          <%= image_tag(@images.first.img.url(:medium))%>
+          <br /> <a href="#" data-reveal-id="more_images"> More Images...</a>
           <%else%>
           <img src="http://placehold.it/300x400">
           
@@ -15,7 +15,7 @@
           <h3><%= @item.title %></h3>
           <h4><%= number_to_currency(@item.unit_price) %></h4>
 <br />          
-          <strong><%= @inventory %> left in stock!</strong><br /><p></p>
+          <strong><%= @inventory || 0 %> left in stock!</strong><br /><p></p>
           
   
           <%= render "add_to_cart" %>
@@ -36,13 +36,28 @@
         <hr>
         <div class="large-12 columns">
           <h4>You might also like:</h4>
+          <% @might_like.each do |m| %>
+          <%= link_to image_tag(!m.images.first.nil? ? m.images.first.img.url(:thumb) : "http://placehold.it/50x50&text=[img]" ), m %>
+<!--           <img src="http://placehold.it/150x100&text=[img]">
           <img src="http://placehold.it/150x100&text=[img]">
           <img src="http://placehold.it/150x100&text=[img]">
-          <img src="http://placehold.it/150x100&text=[img]">
-          <img src="http://placehold.it/150x100&text=[img]">
+          <img src="http://placehold.it/150x100&text=[img]"> -->
+          <%end%>
         </div>
         </div>
 
-<!-- if loggedin as an admin have an these buttons/links -->
+
+          <% if logged_in_admin? %>
 <%= link_to 'Edit', edit_item_path(@item) %> |
 <%= link_to 'Back', items_path %>
+          <%end%>
+
+
+<div id="more_images" class="reveal-modal" data-reveal>
+  <h2><%= @item.title %> Images</h2>
+  <% @item.images.each do |i| %>
+  
+  <%= image_tag(i.img.url(:medium))
+ %>  &nbsp; <%end%>
+  <a class="close-reveal-modal">&#215;</a>
+</div>

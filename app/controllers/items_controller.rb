@@ -7,7 +7,17 @@ class ItemsController < ApplicationController
   # GET /items
   # GET /items.json
   def index
-    @items = Item.search(params[:search])
+    case(params[:filter])
+    when "newest"
+      @items = Item.last(10)
+    when "best_seller"
+      @items = Item.all.sample(10)
+    when "deals"
+      @items = Item.all.sample(10)
+    else
+       @items = Item.search(params[:search])
+    end
+   
   end
 
   # GET /items/1
@@ -16,6 +26,7 @@ class ItemsController < ApplicationController
     @images = @item.images
     @inventory = @item.inventory.inventory_amount
     @cart = @item.carts.build
+    @might_like = Item.all.sample(10)
   end
 
   # GET /items/new

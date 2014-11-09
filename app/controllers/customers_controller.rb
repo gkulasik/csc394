@@ -1,6 +1,12 @@
 class CustomersController < ApplicationController
   before_action :set_customer, only: [:show, :edit, :update, :destroy]
-  skip_before_action :is_admin, except: :index
+  
+  #####
+  #skip_before_action :is_admin, except: :index
+  #### Lourance commented the above skip_before_action, because when it is included, the admin is not authorized to go into the customers view. Will inform Greg tomorrow to see if better solution available
+  ##### Lourance added new skip_before_action below - same as above, confirm with Greg.
+  
+  skip_before_action :is_admin
   skip_before_action :is_logged_in, only: [:new, :show, :create]
   # GET /customers
   # GET /customers.json
