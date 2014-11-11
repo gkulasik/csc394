@@ -1,0 +1,7 @@
+<dl class="sub-nav">
+  <dt>Filter:</dt>
+  <dd><%= link_to "All", items_path%></dd>
+  <dd><%= link_to "Price High to Low", items_path(filter: "sort", sorting: "hi_to_lo", search: params[:search] )%></dd>
+  <dd><%= link_to "Price Low to High", items_path(filter: "sort", sorting: "lo_to_hi", search: params[:search] )%></dd>
+  <dd><a href="#">Highest Reviews</a></dd>
+</dl>

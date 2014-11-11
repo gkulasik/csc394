@@ -7,6 +7,11 @@ class ItemsController < ApplicationController
   # GET /items
   # GET /items.json
   def index
+    if logged_in_admin?
+      per = 30
+    else
+      per = 9
+    end
     case(params[:filter])
     when "newest"
       @items = Item.last(10)
@@ -14,14 +19,22 @@ class ItemsController < ApplicationController
       @items = Item.all.sample(10)
     when "deals"
       @items = Item.all.sample(10)
-    when "sorted"
-      
+    when "sort"
+      case params[:sorting]
+        when "hi_to_lo"
+        @items = Item.search(params[:search]).order("unit_price DESC").page(params[:page]).per(per)
+        when "lo_to_hi"
+        @items = Item.search(params[:search]).order("unit_price ASC").page(params[:page]).per(per)
+      else
+         @items = Item.search(params[:search]).page(params[:page]).per(per)
+      end
     else
-       @items = Item.search(params[:search])
+      @items = Item.search(params[:search]).page(params[:page]).per(per)
     end
     if @items.empty?
       flash.now[:alert] = "Uh oh! We didn't find any thing for that search. Please try again."
-      
+      params[:search] = ""
+       @items = Item.all.page(params[:page]).per(per)
     end
   end
 

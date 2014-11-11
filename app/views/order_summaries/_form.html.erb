@@ -10,24 +10,31 @@
       </ul>
     </div>
   <% end %>
+ 
 
   <div class="field">
-    <%= f.label :customer_id %><br>
-    <%= f.number_field :customer_id %>
-  </div>
-  <div class="field">
     <%= f.label :order_date %><br>
-    <%= f.datetime_select :order_date %>
-  </div>
+    <span class="datetime">
+    <%= f.date_select :order_date, order: [:month, :day, :year], include_blank: true %>
+    </span>
+</div>
   <div class="field">
     <%= f.label :ship_date %><br>
-    <%= f.datetime_select :ship_date %>
+    <span class="datetime">
+    <%= f.date_select :ship_date, order: [:month, :day, :year], include_blank: true %>
+    </span>
   </div>
   <div class="field">
     <%= f.label :total_cost %><br>
-    <%= f.text_field :total_cost %>
+    <%= f.text_field :total_cost, :value => (number_with_precision(f.object.total_cost, :precision => 2) || 0) %>
   </div>
+
   <div class="actions">
-    <%= f.submit %>
+    <% if !f.object.new_record? %>
+    <%= f.submit "Update", class: "button small" %>
+    <%else%>
+    <%= f.submit "Submit", class: "button small" %>
+    <%end%>
+    
   </div>
 <% end %>

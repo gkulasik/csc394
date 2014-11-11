@@ -16,6 +16,31 @@
     <%= f.text_field :name %>
   </div>
 </div>
+
+<div class="row">
+  <div class="field small-6 columns">
+    <%= f.label :phone_number %><br>
+    <%= f.text_field :phone_number %>
+  </div>
+</div>
+<div class="row">
+  <div class="field small-6 columns">
+    <%= f.label :email %><br>
+    <%= f.text_field :email %>
+  </div>
+</div>
+<div class="row">
+<div class="field small-6 columns">
+  <%= f.label :password %><br>
+  <%= f.password_field :password %>
+  </div>
+</div>
+<div class="row">
+  <div class="field small-6 columns">
+    <%= f.label :password_confirmation %><br>
+    <%= f.password_field :password_confirmation %>
+  </div>
+</div>
 <div class="row">
   <div class="field small-6 columns">
     <%= f.label :address %>
@@ -44,30 +69,6 @@
   <div class="field small-6 columns">
     <%= f.label :country %><br>
     <%= f.country_code_select :country, ["", ""] %>
-  </div>
-</div>
-<div class="row">
-  <div class="field small-6 columns">
-    <%= f.label :phone_number %><br>
-    <%= f.text_field :phone_number %>
-  </div>
-</div>
-<div class="row">
-  <div class="field small-6 columns">
-    <%= f.label :email %><br>
-    <%= f.text_field :email %>
-  </div>
-</div>
-<div class="row">
-<div class="field small-6 columns">
-  <%= f.label :password %><br>
-  <%= f.password_field :password %>
-  </div>
-</div>
-<div class="row">
-  <div class="field small-6 columns">
-    <%= f.label :password_confirmation %><br>
-    <%= f.password_field :password_confirmation %>
   </div>
 </div>
   <div class="actions">

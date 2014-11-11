@@ -35,7 +35,7 @@
 </p>
 <p>
   <strong>Shipping Country:</strong>
-  <%= I18n.t(@checkout.shipping_country, :scope => :countries) %>
+  <%= code_to_country(@checkout.shipping_country) %>
 </p>
 <br />
 

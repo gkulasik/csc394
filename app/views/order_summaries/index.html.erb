@@ -1,4 +1,4 @@
-<h1>Listing order_summaries</h1>
+<h1>Orders</h1>
 
 <table>
   <thead>
@@ -14,10 +14,10 @@
   <tbody>
     <% @order_summaries.each do |order_summary| %>
       <tr>
-        <td><%= order_summary.customer_id %></td>
-        <td><%= order_summary.order_date %></td>
-        <td><%= order_summary.ship_date %></td>
-        <td><%= order_summary.total_cost %></td>
+        <td><%= order_summary.customer.name %></td>
+        <td><%= order_summary.order_date.strftime("%m/%d/%y") %></td>
+        <td><%= order_summary.ship_date || "N/S" %></td>
+        <td><%= number_to_currency(order_summary.total_cost) %></td>
         <td><%= link_to 'Show', order_summary %></td>
         <td><%= link_to 'Edit', edit_order_summary_path(order_summary) %></td>
         <td><%= link_to 'Destroy', order_summary, method: :delete, data: { confirm: 'Are you sure?' } %></td>
