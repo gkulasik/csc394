@@ -14,10 +14,15 @@ class ItemsController < ApplicationController
       @items = Item.all.sample(10)
     when "deals"
       @items = Item.all.sample(10)
+    when "sorted"
+      
     else
        @items = Item.search(params[:search])
     end
-   
+    if @items.empty?
+      flash.now[:alert] = "Uh oh! We didn't find any thing for that search. Please try again."
+      
+    end
   end
 
   # GET /items/1

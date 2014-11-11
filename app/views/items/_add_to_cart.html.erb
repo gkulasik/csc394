@@ -3,7 +3,7 @@
  
 <%= form_for(@cart) do |f|%>
  <div class="small-4 columns"%>
-<%= text_field_tag(:quantity_to_add) %>
+   <%= text_field_tag(:quantity_to_add, 1) %>
 <%= hidden_field_tag(:item_id, @item.id) %>
    <%= hidden_field_tag(:customer_id, !current_customer.nil? ? current_customer.id : -1 ) %>
   </div>

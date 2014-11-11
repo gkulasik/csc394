@@ -30,12 +30,15 @@ class CartsController < ApplicationController
       new_amount = cart.item.inventory.inventory_amount - diff
       if cart.item.inventory.update_attributes(inventory_amount: new_amount)
       cart.update_attributes(quantity: params[:cart][:quantity_to_add].to_i)
+        
       else
         flash[:alert] = "Uh oh! Looks like we don't have enough inventory to accomodate your order. Please try a lower quantity."
-        redirect_to cart_url
+       
       end
+      
+      
     end
-    redirect_to cart_url
+     redirect_to cart_url
 #     if  params.has_key? "cart_id"
 #       cart = Cart.find(params[:cart_id])
 #       item = cart.item
