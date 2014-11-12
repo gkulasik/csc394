@@ -2,6 +2,8 @@ namespace :db_generator do
   desc "TODO"
   task g_all: :environment do
     Rake::Task["db_generator:g_customers"].invoke
+    Rake::Task["db_generator:g_items"].invoke
+    Rake::Task["db_generator:g_images"].invoke
   end
 
   desc "Genereate random users for the database"
@@ -27,11 +29,57 @@ namespace :db_generator do
     end
   end
 
-  desc "TODO"
+  desc "Create many test items to populate the site"
   task g_items: :environment do
-    
+    count = 0
+    30.times do
+      i = Item.new
+      inv = i.build_inventory
+      inv.inventory_amount = Faker::Number.digit
+      i.description = Faker::Lorem.paragraph
+       i.keywords = Faker::Lorem.words(4).to_sentence(:last_word_connector => ", ")
+      i.unit_price = Faker::Commerce.price.to_d
+      i.title = Faker::Commerce.product_name
+        
+      if i.save
+        count += 1
+      end
+      puts "Creates Item: #{i.title}, id: #{i.id}, count: #{count}"
+      
+    end
   end
 
+  desc "To create many images associated with each item"
+  task g_images: :environment do
+    count = 0
+    items = Item.all
+    items.each  do |i|
+      2.times.do
+      img = i.images.build
+      img.img = Faker::Avatar.image(i.title, "300x300", "jpg")
+      if img.save
+        count +=1
+      end
+      puts "Created Image for Item: #{i.title}, id: #{img.id}, count: #{count}"
+      end
+    end
+  end
+  
+   desc "TODO"
+  task g_carts: :environment do
+    
+  end
+  
+  desc "TODO"
+  task g_order_summaries: :environment do
+    #in here also create order details
+  end
+  
+  desc "TODO"
+  task g_checkouts: :environment do
+    
+  end
+  
   desc "TODO"
   task g_reviews: :environment do
     
