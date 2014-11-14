@@ -2,17 +2,28 @@ class AdminController < ApplicationController
   
   skip_before_action :is_admin
   
-  def home
-  end
   
-  #simple method to add all users to a variable ..maybe make another method to add only those that are logged in. Double check with Greg.
-  #Update Saturday - does not seem I need this as the views were already created, I had overthought what my tasks were. All except the below method deleted, and will probably delete as well, bcause not in use. 
-  def index
-    @all_users = Customer.all
-  end
 
+  ## Update Thursday Night - Created variable in method to select where ship_date is nil and also added an index with a parameters case for the filter, but not really sure where this should go, because I am thinking it will go into order_summaries_controller and not admin controller. Will ask Greg tomorrow morning and complete. Filter commented out below, because not sure if it is correct.
+  
+#<dl class="sub-nav">
+#  <dt>Filter:</dt>
+#  <dd role="menuitem"><%= link_to "All", order_summary%></dd>
+#  <dd role="menuitem"><%= link_to "Unshipped Orders", order_summary_path(filter: "unshipped")%></dd>
+#</dl>
+#<br /><br />
+
+  def unshipped_order
+    @unshipped_orders = OrderSummary.where("ship_date = ?", nil)
+  end
+  
+  def index
+    case(params[:filter])
+    when "unshipped"
+      @unshipped_orders = OrderSummary.where("ship_date = ?", nil).order("order_date ASC")
+    end
     
-  
-  
-  
+    
+    
 end
+

@@ -1,9 +1,64 @@
-<div class="range-slider" data-slider data-options="start: 1; end: 5;">
-  <span class="range-slider-handle" role="slider" tabindex="0"></span>
-  <span class="range-slider-active-segment"></span>
-  <input type="hidden">
+<!-- <div class="row">
+  <div class="small-2 large-1 columns">
+    <p style="float:right;">0</p>
+    
+  </div>
+  <div class="small-6 large-4 columns">
+    
+    <div class="range-slider" data-slider data-options="display_selector: #sliderOutput3; start: 0; end: 5;">
+      <span class="range-slider-handle" role="slider" tabindex="0"></span>
+      <span class="range-slider-active-segment"></span>
+    </div>
+  </div>
+  <div class="small-2 large-1 columns">
+    5
+    
+  </div>
+  <div class="small-2 medium-1 columns">
+    <span id="sliderOutput3"></span>
+  </div>
+</div> -->
+<br />
+<hr />
+<h3>Reviews</h3>
+<br />
+<div class="row">
+        <div class="small-offset-3 small-5 columns">
+         <h5>Write a Review</h5>
+          <p>Must be signed in to review a product. </p>
+        </div>
 </div>
-<script>
-$('#slider').attr('data-slider');
-  
-</script>
+
+<%= form_for(@item_review) do |f| %>
+<%= f.hidden_field :item_id, value: @item.id %>
+<%= f.hidden_field :customer_id, value: current_customer.nil? ? -1 : current_customer.id %>
+<div class="row">
+        <div class="small-3 columns">
+          <label for="right-label" class="right">Rating</label>
+        </div>
+        <div class="small-1 columns">
+          <%= f.text_field :rating %>
+        </div>
+  <div class="small-8 columns">
+    <h4>/5</h4>
+        </div>
+      </div>
+<div class="row">
+<div class="small-3 columns">
+          <label for="right-label" class="right">Comments <br />(1000 character max)</label>
+        </div>
+        <div class="small-6 columns">
+          <%= f.text_area :comments %>
+        </div>
+  <div class="small-3 columns">
+          
+        </div>
+      </div>
+
+
+<br />
+<center>
+<%= f.submit "Submit", class: "button small" %>
+</center>
+<%end%>
+

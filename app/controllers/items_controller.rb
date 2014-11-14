@@ -44,7 +44,13 @@ class ItemsController < ApplicationController
     @images = @item.images
     @inventory = @item.inventory.inventory_amount
     @cart = @item.carts.build
-    @might_like = Item.all.sample(10)
+    @might_like = Item.all.sample(6)
+    @item_review = @item.item_reviews.build
+    if !params.has_key?("reviews")
+      @reviews = @item.item_reviews.where.not(id: nil).order("updated_at DESC")
+    else
+      @reviews = @item.item_reviews.where.not(id: nil).order(params[:reviews])
+    end
   end
 
   # GET /items/new

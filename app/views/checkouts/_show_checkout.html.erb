@@ -11,7 +11,7 @@
 
 <p>
   <strong>Expiration date:</strong>
-  <%= @checkout.expiration_date %>
+  <%= @checkout.expiration_date.strftime("%m/%Y") %>
 </p>
 
 <p>

@@ -1,5 +1,5 @@
 class Item < ActiveRecord::Base
-has_many :ItemReviews, dependent: :destroy
+has_many :item_reviews, dependent: :destroy
 # Validations.
 
   validates :title,:description, :keywords, :unit_price,presence: true

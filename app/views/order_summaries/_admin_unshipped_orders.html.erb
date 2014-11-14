@@ -1,0 +1,31 @@
+<h1>Unshipped Orders</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Customer ID</th>
+      <th>Order Date</th>
+      <th>Ship Date</th>
+      <th>Total Cost</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @unshipped_orders.each do |order| %>
+      <tr>
+        <td><%= order.customer_id %></td>
+        <td><%= order.order_date %></td>
+        <td><%= order.ship_date %></td>
+        <td><%= order.total_cost %></td>
+        <td><%= link_to 'Show', order %></td>
+        <td><%= link_to 'Edit', edit_order_summary_path(order) %></td>
+        <td><%= link_to 'Destroy', order, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Order summary', new_order_summary_path %>

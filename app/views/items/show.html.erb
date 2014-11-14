@@ -14,7 +14,12 @@
         <div class="large-6 columns">
           <h3><%= @item.title %></h3>
           <h4><%= number_to_currency(@item.unit_price) %></h4>
-<br />          
+Rating:       <span data-tooltip aria-haspopup="true" class="has-tip" title="<%=number_with_precision(@item.avg_review, precision: 2)%>/5 Stars!">
+          <% @item.avg_review.floor.times do %>
+  <i class="fi-star"></i>
+  <%end%>
+          </span>  
+          <br /> <br />
           <strong><%= @inventory || 0 %> left in stock!</strong><br /><p></p>
           
   
@@ -37,7 +42,7 @@
         <div class="large-12 columns">
           <h4>You might also like:</h4>
           <% @might_like.each do |m| %>
-          <%= link_to image_tag(!m.images.first.nil? ? m.images.first.img.url(:thumb) : "http://placehold.it/50x50&text=[img]" ), m %>
+          <%= link_to image_tag(!m.images.first.nil? ? m.images.first.img.url(:small) : "http://placehold.it/120x120&text=[img]" ), m %>
 
           <%end%>
         </div>
@@ -45,6 +50,8 @@
 <div class="reviews">
   
   <%= render 'write_review' %>
+  <hr />
+  <%= render 'reviews' %>
           </div>
 
           <% if logged_in_admin? %>

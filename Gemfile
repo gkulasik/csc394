@@ -49,6 +49,7 @@ gem 'figaro'
 gem "nested_form"
 gem 'faker'
 gem 'countries'
+gem 'foundation-icons-sass-rails'
 
 group :development do
   gem 'quiet_assets', '~> 1.0.0'

@@ -12,18 +12,35 @@
   <% end %>
 
   <div class="field">
-    <%= f.label :Item_ID %><br>
-    <%= f.number_field :Item_ID %>
+   
+    <strong><%= image_tag(f.object.item.images.first.img.url(:small)) %> <%= link_to f.object.item.title, f.object.item %></strong>
   </div>
   <div class="field">
-    <%= f.label :Rating %><br>
-    <%= f.number_field :Rating %>
+    <div class="row">
+      <div class="small-1 columns">
+    <%= f.label :rating %><br>
+        <%= f.text_field :rating %>
+      </div>
+      <div class="small-3 columns">
+        <br />
+         <br />
+        
+        <h4>/5</h4>
+      </div>
+      <div class="small-8 columns">
+      </div>
+    </div>
   </div>
   <div class="field">
-    <%= f.label :Comments %><br>
-    <%= f.text_area :Comments %>
+     <div class="field">
+    <div class="row">
+      <div class="small-6 columns">
+    <%= f.label :comments %><br>
+    <%= f.text_area :comments %>
+        </div>
+    </div>
   </div>
   <div class="actions">
-    <%= f.submit %>
+    <%= f.submit "Update", class: "button small" %>
   </div>
 <% end %>

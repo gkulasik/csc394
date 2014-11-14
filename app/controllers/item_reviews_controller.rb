@@ -1,5 +1,6 @@
 class ItemReviewsController < ApplicationController
   before_action :set_item_review, only: [:show, :edit, :update, :destroy]
+  skip_before_filter :is_admin
   
   # leave below commented out until Ray finishes his part, then can uncomment once corrected
   
@@ -9,34 +10,44 @@ class ItemReviewsController < ApplicationController
   # GET /item_reviews
   # GET /item_reviews.json
   def index
-    @item_reviews = ItemReview.all
+    if logged_in_admin?
+      @item_reviews.all
+    else
+      @item_reviews = ItemReview.where(customer_id: current_customer.id)
+    end
+  
   end
 
   # GET /item_reviews/1
   # GET /item_reviews/1.json
   def show
+    redirect_to @item_review.item
   end
 
   # GET /item_reviews/new
   def new
-    @item_review = ItemReview.new
+#     @item_review = ItemReview.new
+    redirect_to @item_review.item
   end
 
   # GET /item_reviews/1/edit
   def edit
+    
   end
 
   # POST /item_reviews
   # POST /item_reviews.json
   def create
     @item_review = ItemReview.new(item_review_params)
-
+    
     respond_to do |format|
       if @item_review.save
-        format.html { redirect_to @item_review, notice: 'Item review was successfully created.' }
+        format.html { redirect_to @item_review.item, notice: 'Review was successfully created.' }
         format.json { render :show, status: :created, location: @item_review }
       else
-        format.html { render :new }
+        flash[:alert] =  "To submit a review you must provide a number between 0 and 5 and provide a comment of less than 1000 characters"
+       
+        format.html{redirect_to @item_review.item}
         format.json { render json: @item_review.errors, status: :unprocessable_entity }
       end
     end
@@ -74,6 +85,6 @@ class ItemReviewsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def item_review_params
-      params.require(:item_review).permit(:Item_ID, :Rating, :Comments)
+      params.require(:item_review).permit(:item_id, :rating, :comments, :customer_id)
     end
 end

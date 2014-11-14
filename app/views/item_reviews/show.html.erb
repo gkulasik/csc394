@@ -1,18 +1,18 @@
 <p id="notice"><%= notice %></p>
 
 <p>
-  <strong>Item id:</strong>
-  <%= @item_review.Item_ID %>
+  <strong>Item:</strong>
+  <%= @item_review.item.title %>
 </p>
 
 <p>
   <strong>Rating:</strong>
-  <%= @item_review.Rating %>
+  <%= @item_review.rating %>
 </p>
 
 <p>
   <strong>Comments:</strong>
-  <%= @item_review.Comments %>
+  <%= @item_review.comments %>
 </p>
 
 <%= link_to 'Edit', edit_item_review_path(@item_review) %> |

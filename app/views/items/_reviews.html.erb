@@ -1,0 +1,33 @@
+<% if !@reviews.empty? %>
+<dl class="sub-nav">
+  <dt>Filter:</dt>
+  <dd role="menuitem"><%= link_to "Newest", item_path(@item, reviews: "updated_at DESC") %></dd>
+  
+  <dd role="menuitem"><%= link_to "Oldest", item_path(@item, reviews: "updated_at ASC")  %></dd>
+  <dd role="menuitem"><%= link_to "Highest Rating", item_path(@item, reviews: "rating DESC")  %></dd>
+  <dd role="menuitem"><%= link_to "Lowest Rating", item_path(@item, reviews: "rating ASC") %></dd>
+</dl>
+
+<%end%>
+
+  <hr />
+
+<% @reviews.each do |r| %>
+<div class="row">
+ 
+<div class="small-3 columns">
+  Rating: <% r.rating.ceil.times do %>
+  <i class="fi-star"></i>
+  <%end%>
+  <br /><br />
+ Date:  <%= r.updated_at.strftime("%m/%d/%Y")%>
+  
+  </div>
+  <div class="small-9 columns">
+    <%= r.comments%><br />
+  </div>
+ 
+</div>
+<hr />
+
+<%end%>

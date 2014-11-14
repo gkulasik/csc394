@@ -10,6 +10,7 @@ class Customer < ActiveRecord::Base
   has_many :carts, dependent: :destroy
   has_many :checkouts, dependent: :destroy
   has_many :order_summaries, dependent: :destroy
+  has_many :item_reviews, dependent: :destroy
   
   def has_open_checkout?
     !self.checkouts.find_by(verified: nil).nil?

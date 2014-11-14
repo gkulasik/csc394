@@ -74,6 +74,7 @@ class CustomersController < ApplicationController
   
   def view_cart
     @carts = current_customer.carts.order("id ASC")
+    @checkout_path = edit_checkout_path(current_customer.checkouts.find_by(verified: nil))  || new_checkout_url
     
   end
   def view_orders

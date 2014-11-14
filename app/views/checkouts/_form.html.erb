@@ -26,7 +26,7 @@
   <div class="field">
     <%= f.label :expiration_date %><br>
     <span class="datetime">
-    <%= f.date_select :expiration_date, start_year: DateTime.now.year, end_year: DateTime.now.year + 10, order: [:month, :day, :year], include_blank: true%></span>
+    <%= f.date_select :expiration_date, start_year: DateTime.now.year, end_year: DateTime.now.year + 10, order: [:month, :year], include_blank: true%></span>
   </div>
  <div class="field">
     <%= f.label :using_account_address, "Use Account Address?" %><br>
