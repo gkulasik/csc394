@@ -22,7 +22,7 @@ class AdminController < ApplicationController
     when "unshipped"
       @unshipped_orders = OrderSummary.where("ship_date = ?", nil).order("order_date ASC")
     end
-    
+  end
     
     
 end
