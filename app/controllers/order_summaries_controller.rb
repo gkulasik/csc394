@@ -1,16 +1,30 @@
 class OrderSummariesController < ApplicationController
   before_action :set_order_summary, only: [:show, :edit, :update, :destroy]
   skip_before_action :is_admin
-  
+  before_action :order_check, only: [:show]
   # GET /order_summaries
   # GET /order_summaries.json
+  def order_check
+    if !right_customer(current_customer.id, @order_summary.customer_id)
+      flash[:alert] = "Uh oh! You don't have authorization to go there."
+      redirect_to root_path
+      return
+    end
+  end
   def index
     @order_summaries = OrderSummary.all
   end
-
+  
+  #Lou added this for his own testing of code on Friday night. Unshipped order view still not working
+  def admin_unshipped_orders
+    @unshipped_orders = OrderSummary.where("ship_date = ?", nil)
+  end
+  
+  
   # GET /order_summaries/1
   # GET /order_summaries/1.json
   def show
+    
     @checkout = @order_summary.checkout
   end
 

@@ -7,6 +7,8 @@ class ApplicationController < ActionController::Base
   before_action :is_admin
   before_action :is_logged_in
   
+ 
+  
   def is_admin
     if is_logged_in
     if !current_customer.admin
@@ -16,7 +18,13 @@ class ApplicationController < ActionController::Base
   end
     
   end
-  
+  def right_customer(customer_id, check_id)
+    if customer_id == check_id || Customer.find(customer_id).admin
+      true
+    else
+      false
+    end
+  end
   def is_logged_in
     if current_customer.nil?
       flash[:alert] = "You need to log in before you can proceed"

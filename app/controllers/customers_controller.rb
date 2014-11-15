@@ -1,15 +1,20 @@
 class CustomersController < ApplicationController
   before_action :set_customer, only: [:show, :edit, :update, :destroy]
-  
-  #####
-  #skip_before_action :is_admin, except: :index
-  #### Lourance commented the above skip_before_action, because when it is included, the admin is not authorized to go into the customers view. Will inform Greg tomorrow to see if better solution available
-  ##### Lourance added new skip_before_action below - same as above, confirm with Greg.
+  before_action :customer_check, only: [:edit, :update, :destroy, :show ]
+
   
   skip_before_action :is_admin, except: [:index, :destroy]
   skip_before_action :is_logged_in, only: [:new, :show, :create]
   # GET /customers
   # GET /customers.json
+  
+  def customer_check
+    if !right_customer(current_customer.id, @customer.id)
+      flash[:alert] = "Uh oh! You don't have authorization to go there."
+      redirect_to root_path
+      return
+    end
+  end
   def index
     @customers = Customer.all
   end
@@ -74,7 +79,7 @@ class CustomersController < ApplicationController
   
   def view_cart
     @carts = current_customer.carts.order("id ASC")
-    @checkout_path = edit_checkout_path(current_customer.checkouts.find_by(verified: nil))  || new_checkout_url
+    @checkout_path = current_customer.checkouts.find_by(verified: nil) ? edit_checkout_path(current_customer.checkouts.find_by(verified: nil)) : new_checkout_url
     
   end
   def view_orders

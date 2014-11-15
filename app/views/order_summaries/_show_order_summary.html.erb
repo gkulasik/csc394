@@ -10,7 +10,7 @@
 
 <p>
   <strong>Ship date:</strong>
-  <%= @order_summary.ship_date ? @order_summary.ship_date : "Not yet shipped" %>
+  <%= @order_summary.ship_date ? @order_summary.ship_date.strftime("%B %d, %Y") : "Not yet shipped" %>
 </p>
 
 <p>

@@ -1,6 +1,4 @@
-== CSC 394 Capstone Project
-
-# Ascent Web Store
+# Ascent Web Store - CSC 394 Capstone Project
 
 Homepage :: ascentwebstore.herokuapp.com
 
@@ -38,4 +36,3 @@ Includes:
 * Database: Postgre
 
 * Deployment: Heroku
-

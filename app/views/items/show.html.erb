@@ -7,7 +7,7 @@
           <%= image_tag(@images.first.img.url(:medium))%>
           <br /> <a href="#" data-reveal-id="more_images"> More Images...</a>
           <%else%>
-          <img src="http://placehold.it/300x400">
+          <img src="http://placehold.it/300x300&text=[Image comming soon!]">
           
           <%end%>
         </div>
@@ -15,7 +15,7 @@
           <h3><%= @item.title %></h3>
           <h4><%= number_to_currency(@item.unit_price) %></h4>
 Rating:       <span data-tooltip aria-haspopup="true" class="has-tip" title="<%=number_with_precision(@item.avg_review, precision: 2)%>/5 Stars!">
-          <% @item.avg_review.floor.times do %>
+          <% @item.avg_review.round.times do %>
   <i class="fi-star"></i>
   <%end%>
           </span>  

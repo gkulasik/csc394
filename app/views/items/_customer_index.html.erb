@@ -9,7 +9,8 @@
               <%end%>
  
               <div class="panel">
-                <h5><%= link_to item.title, item %></h5>
+                <h6><%= link_to truncate(item.title, length: 19, omission: '...'), item %></h6>
+               
                 <h6 class="subheader"><%= number_to_currency(item.unit_price) %>/each</h6>
               </div>
             </div>

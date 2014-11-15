@@ -1,8 +1,19 @@
 class CheckoutsController < ApplicationController
   before_action :set_checkout, only: [:show, :edit, :update, :destroy]
   skip_before_action :is_admin, except: :index
+  before_action :checkout_check, only: [:show, :edit, :update, :destroy]
   # GET /checkouts
   # GET /checkouts.json
+  
+  def checkout_check
+    if !right_customer(current_customer.id, @checkout.customer_id)
+      flash[:alert] = "Uh oh! You don't have authorization to go there."
+      redirect_to root_path
+      return
+    end
+  end
+  
+  
   def index
     @checkouts = Checkout.all
   end

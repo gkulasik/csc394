@@ -11,49 +11,58 @@
     </div>
   <% end %>
 
-  <div class="field">
+  <div class="row">
+      <div class="field small-6 columns">
     <%= f.label :card_number %><br>
     <%= f.text_field :card_number %>
-  </div>
-  <div class="field">
-    <%= f.label :csv %><br>
+  </div></div>
+  <div class="row">
+      <div class="field small-6 columns">
+    <%= f.label :csv, "CSV" %><br>
     <%= f.text_field :csv %>
-  </div>
-  <div class="field">
+  </div></div>
+   <div class="row">
+      <div class="field small-6 columns">
     <%= f.label :name_on_card %><br>
     <%= f.text_field :name_on_card %>
-  </div>
+  </div></div>
   <div class="field">
     <%= f.label :expiration_date %><br>
     <span class="datetime">
     <%= f.date_select :expiration_date, start_year: DateTime.now.year, end_year: DateTime.now.year + 10, order: [:month, :year], include_blank: true%></span>
   </div>
- <div class="field">
+  <div class="row">
+      <div class="field small-6 columns">
     <%= f.label :using_account_address, "Use Account Address?" %><br>
     <%= f.check_box :using_account_address %>
-  </div>
+  </div></div>
 
-  <div class="field">
+   <div class="row">
+      <div class="field small-6 columns">
     <%= f.label :shipping_address %><br>
     <%= f.text_field :shipping_address %>
-  </div>
+  </div></div>
  
-  <div class="field">
+   <div class="row">
+      <div class="field small-6 columns">
     <%= f.label :shipping_city %><br>
     <%= f.text_field :shipping_city %>
-  </div>
-  <div class="field">
+  </div></div>
+   <div class="row">
+      <div class="field small-6 columns">
     <%= f.label :shipping_state_or_province %><br>
     <%= f.text_field :shipping_state_or_province %>
-  </div>
-  <div class="field">
+  </div></div>
+  <div class="row">
+      <div class="field small-6 columns">
     <%= f.label :shipping_postal_code %><br>
     <%= f.text_field :shipping_postal_code %>
-  </div>
- <div class="field">
+  </div></div>
+ <div class="row">
+      <div class="field small-6 columns">
     <%= f.label :shipping_country %><br>
    <%= f.country_code_select :shipping_country, ["", ""]  %>
-  </div>
+  </div></div>
 
 
  

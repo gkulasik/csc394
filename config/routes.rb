@@ -2,6 +2,7 @@ Rails.application.routes.draw do
   
   get 'customers/order_confirmation'
   get 'admin/home'
+  get 'admin/unshipped_orders'
   get 'customers/view_orders'
   resources :checkouts
 
@@ -19,6 +20,7 @@ Rails.application.routes.draw do
   get "items/delete_image"
   root "public_pages#home"
   get 'public_pages/home'
+  
 
   get 'public_pages/about'
 

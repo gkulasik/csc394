@@ -14,8 +14,11 @@
 //= require jquery_ujs
 //= require jquery_nested_form
 //= require foundation
-//= require turbolinks
+
+
+
 //= require_tree .
+// removed turbo links for foundation incombatibility
 
 $("input[type='checkbox']").click(function () {
     var thisCheckbox = $(this);
@@ -47,4 +50,4 @@ $("input[type='checkbox']").click(function () {
 
 
 
-$(function(){ $(document).foundation(); });
+$(function(){ $(document).foundation(); }); 

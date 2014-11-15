@@ -13,7 +13,7 @@
 
   <div class="field">
    
-    <strong><%= image_tag(f.object.item.images.first.img.url(:small)) %> <%= link_to f.object.item.title, f.object.item %></strong>
+    <strong><%= !f.object.item.images.empty? ? image_tag(f.object.item.images.first.img.url(:small)) : image_tag("http://placehold.it/120x120&text=[Image]") %> <%= link_to f.object.item.title, f.object.item %></strong>
   </div>
   <div class="field">
     <div class="row">

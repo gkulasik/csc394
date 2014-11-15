@@ -14,17 +14,20 @@ class ItemsController < ApplicationController
     end
     case(params[:filter])
     when "newest"
-      @items = Item.last(10)
+   
+      @items = Kaminari.paginate_array(Item.last(9)).page(params[:page]).per(per)
     when "best_seller"
-      @items = Item.all.sample(10)
+      @items = Kaminari.paginate_array(Item.all.sample(9)).page(params[:page]).per(per)
     when "deals"
-      @items = Item.all.sample(10)
+      @items = Kaminari.paginate_array(Item.all.sample(9)).page(params[:page]).per(per)
     when "sort"
       case params[:sorting]
         when "hi_to_lo"
         @items = Item.search(params[:search]).order("unit_price DESC").page(params[:page]).per(per)
         when "lo_to_hi"
         @items = Item.search(params[:search]).order("unit_price ASC").page(params[:page]).per(per)
+        when "rating"
+        @items = Item.search(params[:search]).order("avg_review DESC").page(params[:page]).per(per)
       else
          @items = Item.search(params[:search]).page(params[:page]).per(per)
       end

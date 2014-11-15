@@ -66,7 +66,7 @@ namespace :db_generator do
     @items.each do |f|
       5.times do
         review = f.item_reviews.build
-        review.rating = rand(0..5)
+        review.rating = rand(1..5)
         review.comments = Faker::Lorem.paragraph
         review.customer = Customer.find(Customer.all.select(:id).sample(1).first.id)
         if review.save
