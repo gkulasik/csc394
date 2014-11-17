@@ -40,7 +40,7 @@ class CustomersController < ApplicationController
 
     respond_to do |format|
       if @customer.save
-        log_in @customer
+        log_in @customer unless logged_in_admin?
         CustomerMailer.sign_up_email(@customer).deliver
         flash[:success] = 'Your account was successfully created!'
         
@@ -58,7 +58,12 @@ class CustomersController < ApplicationController
   def update
     respond_to do |format|
       if @customer.update(customer_params)
-        format.html { redirect_to edit_customer_path(current_customer), notice: 'Customer was successfully updated.' }
+        if logged_in_admin?
+          return_customer = @customer
+        else
+          return_customer = current_customer
+        end
+        format.html { redirect_to edit_customer_path(return_customer), notice: 'Customer was successfully updated.' }
         format.json { render :show, status: :ok, location: @customer }
       else
         format.html { render :edit }
@@ -130,6 +135,7 @@ class CustomersController < ApplicationController
        
         @order.update_attributes(total_cost: total_cost)  ? @everything_ok : @everything_ok = false
         @checkout.update_attributes(order_summary_id: @order.id)  ? @everything_ok : @everything_ok = false
+       
         if @everything_ok
           true
         else

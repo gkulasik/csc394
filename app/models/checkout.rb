@@ -9,7 +9,7 @@ class Checkout < ActiveRecord::Base
   
   
   def edit_card_info
-    if self.card_number.to_i > 0 && self.csv.to_i > 0
+    if self.new_record? && self.card_number.to_i > 0 && self.csv.to_i > 0 
     length = self.card_number.length
     card = self.card_number[-4,4]
     (length-4).times do
@@ -22,8 +22,10 @@ class Checkout < ActiveRecord::Base
     end
     self.csv = csv
   else
+    if self.new_record?
     self.errors.add(:card_number, "must be a number.")
     self.errors.add(:csv, "must be a number.")
+    end
   end
     
   end

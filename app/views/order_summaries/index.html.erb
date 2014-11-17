@@ -17,7 +17,7 @@
       <tr>
         <td><%= order_summary.customer.name %></td>
         <td><%= order_summary.order_date.strftime("%m/%d/%y") %></td>
-        <td><%= order_summary.ship_date || "N/S" %></td>
+        <td><%= order_summary.ship_date ? order_summary.ship_date.strftime("%m/%d/%y") : "N/S" %></td>
         <td><%= number_to_currency(order_summary.total_cost) %></td>
         <td><%= link_to 'Show', order_summary %></td>
         <td><%= link_to 'Edit', edit_order_summary_path(order_summary) %></td>
@@ -29,4 +29,4 @@
 
 <br>
 
-<%= link_to 'New Order summary', new_order_summary_path %>
+
