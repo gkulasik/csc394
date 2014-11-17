@@ -17,7 +17,7 @@ class OrderSummariesController < ApplicationController
   
   #Lou added this for his own testing of code on Friday night. Unshipped order view still not working
   def admin_unshipped_orders
-    @unshipped_orders = OrderSummary.where("ship_date = ?", nil)
+    @unshipped_orders = OrderSummary.where("ship_date IS NULL")
   end
   
   

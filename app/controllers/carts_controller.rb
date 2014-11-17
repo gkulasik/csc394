@@ -16,9 +16,9 @@ class CartsController < ApplicationController
       flash[:success] = "Successfully added to cart!"
       redirect_to Item.find(params[:item_id].to_i)
     else
-        error = "Uh oh! There was an error adding this to your cart."
+      error = "Uh oh! There was an error adding this to your cart. Please make sure the quantity you selected is positive and not greater than our current stock quantity."
         flash[:alert] = error
-      render Item.find(params[:item_id].to_i)
+      redirect_to Item.find(params[:item_id].to_i)
     end
   end
 
@@ -28,12 +28,16 @@ class CartsController < ApplicationController
         cart = current_customer.carts.find_by(id: params[:cart][:cart_id].to_i)
       diff = params[:cart][:quantity_to_add].to_i - cart.quantity
       new_amount = cart.item.inventory.inventory_amount - diff
-      if cart.item.inventory.update_attributes(inventory_amount: new_amount)
+      if params[:cart][:quantity_to_add].to_i > 0 && cart.item.inventory.update_attributes(inventory_amount: new_amount)
       cart.update_attributes(quantity: params[:cart][:quantity_to_add].to_i)
         
       else
+        if params[:cart][:quantity_to_add].to_i <= 0
+          flash[:alert] = "Sorry, that is not a valid amount. Please try a positive number."
+        else
+          
         flash[:alert] = "Uh oh! Looks like we don't have enough inventory to accomodate your order. Please try a lower quantity."
-       
+        end
       end
       
       

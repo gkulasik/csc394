@@ -9,7 +9,7 @@ class AdminController < ApplicationController
 
 
   def unshipped_orders
-    @unshipped_orders = OrderSummary.where("ship_date IS NULL")
+    @unshipped_orders = OrderSummary.where("ship_date IS NULL").order('total_cost DESC')
   end
   
     
