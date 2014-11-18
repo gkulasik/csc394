@@ -11,7 +11,7 @@ namespace :db_generator do
   task g_customers: :environment do
     count = 0
     admin_emails = ["gkulasik@gmail.com", "LKHAMIS84@YAHOO.COM", "JosephTRichard@gmail.com", "ray153056@gmail.com", "GONET90@GMAIL.COM", "bburton12@comcast.net", "IAMBLAND1990@GMAIL.COM"]
-    30.times do 
+    7.times do 
       c = Customer.new
       c.name = Faker::Name.name
       if admin_emails[count].nil?
