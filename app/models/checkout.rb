@@ -6,7 +6,15 @@ class Checkout < ActiveRecord::Base
   before_validation :check_address
   
   before_validation :edit_card_info
+  validate :correct_dates
   
+  def correct_dates
+    if !self.expiration_date.nil?
+      if Date.today > self.expiration_date
+        errors.add(:expiration_date, "is already expired.")
+      end
+    end
+    end
   
   def edit_card_info
     if self.new_record? && self.card_number.to_i > 0 && self.csv.to_i > 0 

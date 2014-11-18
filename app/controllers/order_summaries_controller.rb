@@ -12,7 +12,16 @@ class OrderSummariesController < ApplicationController
     end
   end
   def index
+    if !params.has_key?("type")
     @order_summaries = OrderSummary.all
+    else
+      case params[:type]
+      when "unshipped"
+        @order_summaries = OrderSummary.where("ship_date IS NULL").order('order_date ASC')
+      else
+         @order_summaries = OrderSummary.all
+      end
+    end
   end
   
 

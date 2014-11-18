@@ -36,6 +36,7 @@ class CheckoutsController < ApplicationController
 
   # GET /checkouts/1/edit
   def edit
+    @checkout.using_account_address = false
   end
 
   # POST /checkouts

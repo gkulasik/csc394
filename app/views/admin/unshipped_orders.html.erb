@@ -1,9 +1,0 @@
-<h1>Unshipped Orders </h1>
-<table>
-  <% @unshipped_orders.each do |u| %>
-  <tr>
-    <td><%= link_to "Order - #{u.order_date.strftime("%m/%d/%Y")} - #{truncate(u.customer.name, length: 20)}", edit_order_summary_path(u) %> </td>
-  </tr>
-  
-  <%end%>
-</table>

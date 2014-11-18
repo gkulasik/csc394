@@ -1,6 +1,5 @@
 <dl class="sub-nav">
   <dt>Filter:</dt>
   <dd><%= link_to "All", order_summaries_url %></dd>
-  <dd><%= link_to "Unshipped", order_summaries_url %></dd>
+  <dd><%= link_to "Unshipped", order_summaries_url(type: "unshipped") %></dd>
 </dl>
-<br /><br />

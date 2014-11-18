@@ -2,7 +2,6 @@ Rails.application.routes.draw do
   
   get 'customers/order_confirmation'
   get 'admin/home'
-  get 'admin/unshipped_orders'
   get 'customers/view_orders'
   resources :checkouts
 
