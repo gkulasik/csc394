@@ -7,6 +7,16 @@ namespace :db_generator do
     Rake::Task["db_generator:g_reviews"].invoke
   end
 
+  
+  desc "fix title names to make all titleized not all upper case"
+  task un_capitalize: :environment do
+     items = Item.all
+    items.each do |i|
+      i.update_attributes(title: i.title.titleize)
+    end
+    puts "Titleized all items titles"
+  end
+  
   desc "Genereate random users for the database"
   task g_customers: :environment do
     count = 0

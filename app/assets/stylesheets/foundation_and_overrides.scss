@@ -352,7 +352,7 @@ $body-font-color: #3300CC;
 // $button-font-align: center;
 
 // We use these to control various hover effects.
-// $button-function-factor: -20%;
+ $button-function-factor: 20%;
 
 // We use these to control button border styles.
 // $button-border-width: 0px;
@@ -733,7 +733,7 @@ $body-font-color: #3300CC;
 
 // We use these to control the caption styles
 // $orbit-container-bg: none;
-// $orbit-caption-bg: rgba(51,51,51, 0.8);
+  $orbit-caption-bg: #3366FF;
 // $orbit-caption-font-color: #fff;
 // $orbit-caption-font-size: rem-calc(14);
 // $orbit-caption-position: "bottom"; // Supported values: "bottom", "under"

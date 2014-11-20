@@ -19,6 +19,7 @@ Rails.application.routes.draw do
   get "items/delete_image"
   root "public_pages#home"
   get 'public_pages/home'
+ 
   
 
   get 'public_pages/about'

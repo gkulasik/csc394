@@ -14,10 +14,9 @@ class ItemsController < ApplicationController
     end
     case(params[:filter])
     when "newest"
-   
       @items = Kaminari.paginate_array(Item.last(9)).page(params[:page]).per(per)
     when "best_seller"
-      @items = Kaminari.paginate_array(Item.all.sample(9)).page(params[:page]).per(per)
+      @items = Kaminari.paginate_array(Item.order("updated_at ASC").last(9)).page(params[:page]).per(per)
     when "deals"
       @items = Kaminari.paginate_array(Item.all.sample(9)).page(params[:page]).per(per)
     when "sort"
