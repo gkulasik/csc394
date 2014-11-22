@@ -5,7 +5,7 @@ class Checkout < ActiveRecord::Base
 
   before_validation :check_address
   
-  before_validation :edit_card_info
+  before_save :edit_card_info
   validate :correct_dates
   
   def correct_dates

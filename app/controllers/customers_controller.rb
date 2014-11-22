@@ -40,6 +40,7 @@ class CustomersController < ApplicationController
 
     respond_to do |format|
       if @customer.save
+        
         log_in @customer unless logged_in_admin?
         CustomerMailer.sign_up_email(@customer).deliver
         flash[:success] = 'Your account was successfully created!'

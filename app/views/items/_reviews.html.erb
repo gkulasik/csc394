@@ -1,7 +1,7 @@
 <% if !@reviews.empty? %>
 <dl class="sub-nav">
   <dt>Filter:</dt>
-  <dd role="menuitem" <%= params[:reviews]=="updated_at DESC" ? "class=active" : "" %>><%= link_to "Newest", item_path(@item, reviews: "updated_at DESC") %></dd>
+  <dd role="menuitem" <%= (params[:reviews]=="updated_at DESC" || !params.has_key?("reviews") ) ? "class=active" : "" %>><%= link_to "Newest", item_path(@item, reviews: "updated_at DESC") %></dd>
   
   <dd role="menuitem" <%= params[:reviews]=="updated_at ASC" ? "class=active" : "" %>><%= link_to "Oldest", item_path(@item, reviews: "updated_at ASC")  %></dd>
   <dd role="menuitem" <%= params[:reviews]=="rating DESC" ? "class=active" : "" %>><%= link_to "Highest Rating", item_path(@item, reviews: "rating DESC")  %></dd>
