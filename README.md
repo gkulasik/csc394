@@ -4,14 +4,14 @@ Homepage :: ascentwebstore.herokuapp.com
 
 ## DESCRIPTION
 
-This is the capstone project for CSC 394. This is an app that is meant to simulate an e-store. This application was built in three weeks using Ruy on Rails.
+This is the capstone project for CSC 394. This is an app that is meant to simulate an e-store. This application was built in three weeks using Ruby on Rails.
 
 Includes:
-* Sign up and Log in System
-* Item and Inventory System
-* Cart Management System
-* Site wide Security to prevent unauthorized access
-* Database Generators that populate the database for testing purposes
+* Sign up and log in system
+* Item and inventory system
+* Cart management system
+* Site wide security to prevent unauthorized access
+* Database generators that populate the database for testing purposes
 
 
 ## Development Team
@@ -31,8 +31,8 @@ Includes:
 
 * Rails: 4.1.6
 
-* Configuration
+Configuration
 
-* Database: Postgre
+* Database: Postgres
 
 * Deployment: Heroku
